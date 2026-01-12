@@ -1,0 +1,31 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: system
+      runOnChange: true
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: login
+                  value: user1
+              - column:
+                  name: password
+                  value: $2a$10$VZVyBifYQugWqkRx9IdGBe0MIKZOX9nnQL9bv40TfxUG2VrKvCxD2
+              - column:
+                  name: enabled
+                  valueBoolean: true
+
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: login
+                  value: user2
+              - column:
+                  name: password
+                  value: $2a$10$/SPHIPARIiJDZJev5s9l3eYsN7wKBOlDNP1ZZBD/pB2XloSKoca8C
+              - column:
+                  name: enabled
+                  valueBoolean: true

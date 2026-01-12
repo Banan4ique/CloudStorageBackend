@@ -1,0 +1,57 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /cloud
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/clouddb
+    username: clouduser
+    password: cloudpass
+
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+    enabled: true
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+    properties:
+      javax:
+        persistence:
+          schema-generation:
+            database:
+              action: none
+            scripts:
+              action: none
+              create-target: /dev/null
+              drop-target: /dev/null
+
+      hibernate:
+        hbm2ddl:
+          auto: none
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        temp:
+          use_jdbc_metadata_defaults: false
+        jdbc:
+          lob:
+            non_contextual_creation: true
+
+    generate-ddl: false
+    show-sql: true
+    open-in-view: false
+
+cloud:
+  storage:
+    path: ./uploads
+    token:
+      validity-hours: 24
+      max-tokens-per-user: 5
+      secret-key: your-secret-key-change-in-production
+
+logging:
+  level:
+    org.hibernate: INFO
+    liquibase: INFO
